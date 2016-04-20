@@ -9,7 +9,7 @@ def generate_sentance():
         nr_random = random.randint(0, len(alphabet)-1)
         sentance += alphabet[nr_random]
 
-    print(sentance)
+    # print(sentance)
     return sentance
 
 
@@ -39,13 +39,18 @@ def run_theorem():
     count = 0
     big_procent = 0
 
-    while count < 100000:
+    while big_procent < 100:
+    # while count < 1000:
         procent = compare_sentence()
         if procent > big_procent:
             big_procent = procent
+            print(big_procent)
         count += 1
+        if count % 100000 == 1:
+            print ("count ",count)
 
     return big_procent
 
 
-print("run_theorem ", run_theorem())
+# print("run_theorem ", run_theorem())
+run_theorem()

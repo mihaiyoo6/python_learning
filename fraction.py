@@ -1,10 +1,9 @@
 class Fraction:
 
-    def __init__(self,top,bottom):
+    def __init__(self, top, bottom):
 
         self.num = top
         self.den = bottom
-
 
     def show(self):
         print(self.num, '/', self.den)
@@ -12,39 +11,36 @@ class Fraction:
     def __str__(self):
         return str(self.num)+"/"+str(self.den)
 
-
     def __add__(self, other):
-        newnum = self.num * other.den + other.num * self.den
-        newden = self.den * other.den
-        commonDivisor = gcd(newnum, newden)
-        return Fraction(newnum//commonDivisor, newden//commonDivisor)
+        new_num = self.num * other.den + other.num * self.den
+        new_den = self.den * other.den
+        common_divisor = gcd(new_num, new_den)
+        return Fraction(new_num//common_divisor, new_den//common_divisor)
 
     def __eq__(self, other):
-        firstnum = self.num * other.den
-        secondnum = self.den * other.num
+        first_num = self.num * other.den
+        second_num = self.den * other.num
 
-        return firstnum == secondnum
+        return first_num == second_num
 
-#HELPER greatest common divisor
 
-def gcd(m,n):
-    while m%n !=0:
-        oldm = m
-        oldn = n
+# HELPER greatest common divisor
+def gcd(m, n):
+    while m % n != 0:
+        old_m = m
+        old_n = n
 
-        m = oldn
-        n = oldm%oldn
+        m = old_n
+        n = old_m % old_n
 
     return n
 
-
-
-myF = Fraction(2,3)
+myF = Fraction(2, 3)
 myF.show()
 print(myF)
 
-f1 = Fraction(2,4)
-f2 = Fraction(1,2)
+f1 = Fraction(2, 4)
+f2 = Fraction(1, 2)
 f3 = f1+f2
-print( f3)
-print( f1 == f2)
+print(f3)
+print(f1 == f2)

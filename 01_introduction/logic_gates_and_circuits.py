@@ -75,6 +75,19 @@ class AndGate(BinaryGate):
         else:
             return 0
 
+class NandGate(BinaryGate):
+
+    def __init__(self, n):
+        BinaryGate.__init__(self, n)
+
+    def perform_gate_logic(self):
+        a = self.get_pin_a()
+        b = self.get_pin_b()
+        if a == 1 and b == 1:
+            return 0
+        else:
+            return 1
+
 
 class OrGate(BinaryGate):
 
@@ -89,6 +102,21 @@ class OrGate(BinaryGate):
             return 1
         else:
             return 0
+
+
+class NorGate(BinaryGate):
+
+    def __init__(self, n):
+        BinaryGate.__init__(self, n)
+
+    def perform_gate_logic(self):
+
+        a = self.get_pin_a()
+        b = self.get_pin_b()
+        if a == 1 or b == 1:
+            return 0
+        else:
+            return 1
 
 
 class NotGate(UnaryGate):
@@ -127,6 +155,8 @@ def main():
     c2 = Connector(g2, g3)
     c3 = Connector(g3, g4)
 
-    print(g4.get_output())
+    # print(g4.get_output())
+    g5 = NorGate("G5")
+    print(g5.get_output())
 
 main()

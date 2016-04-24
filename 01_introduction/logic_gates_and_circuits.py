@@ -75,19 +75,27 @@ class AndGate(BinaryGate):
         else:
             return 0
 
-class NandGate(BinaryGate):
+# class NandGate(BinaryGate):
+#
+#     def __init__(self, n):
+#         BinaryGate.__init__(self, n)
+#
+#     def perform_gate_logic(self):
+#         a = self.get_pin_a()
+#         b = self.get_pin_b()
+#         if a == 1 and b == 1:
+#             return 0
+#         else:
+#             return 1
 
-    def __init__(self, n):
-        BinaryGate.__init__(self, n)
+
+class NandGate(AndGate):
 
     def perform_gate_logic(self):
-        a = self.get_pin_a()
-        b = self.get_pin_b()
-        if a == 1 and b == 1:
+        if super().perform_gate_logic() == 1:
             return 0
         else:
             return 1
-
 
 class OrGate(BinaryGate):
 
@@ -104,16 +112,24 @@ class OrGate(BinaryGate):
             return 0
 
 
-class NorGate(BinaryGate):
+# class NorGate(BinaryGate):
+#
+#     def __init__(self, n):
+#         BinaryGate.__init__(self, n)
+#
+#     def perform_gate_logic(self):
+#
+#         a = self.get_pin_a()
+#         b = self.get_pin_b()
+#         if a == 1 or b == 1:
+#             return 0
+#         else:
+#             return 1
 
-    def __init__(self, n):
-        BinaryGate.__init__(self, n)
+class NorGate(OrGate):
 
     def perform_gate_logic(self):
-
-        a = self.get_pin_a()
-        b = self.get_pin_b()
-        if a == 1 or b == 1:
+        if super().perform_gate_logic() == 1:
             return 0
         else:
             return 1
@@ -157,6 +173,23 @@ def main():
 
     # print(g4.get_output())
     g5 = NorGate("G5")
-    print(g5.get_output())
+    # print(g5.get_output())
+    AB = AndGate("A&B")
+    CD = AndGate("C&D")
+    OR1 = OrGate("Or")
+    N1 = NotGate("N1")
+    c4 = Connector(AB, OR1)
+    c5 = Connector(CD, OR1)
+    C6 = Connector(OR1, N1)
 
+    print(N1.get_output())
+
+    N2 = NotGate("N2")
+    N3 = NotGate("N3")
+    AND1 = AndGate("AND1")
+    c6 = Connector(AB, N2)
+    c7 = Connector(CD, N3)
+    C8 = Connector(N2, AND1)
+    C9 = Connector(N3, AND1)
+    print(AND1.get_output())
 main()
